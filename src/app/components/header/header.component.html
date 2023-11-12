@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button routerLink="/">
+        <mat-icon>local_pizza</mat-icon>
+    </button>
+    <span class="logo" routerLink="/">
+        Pizza App
+    </span>
+    <!--  routerLink is used as a part of RoutingModule, to tell Angular to use Angular routing instead of default browser routing, and navigate to /pizza-maker WITHOUT REFRESHING the page  -->
+    <a mat-button routerLink="/pizza-maker">Kitchen</a>
+    <a mat-button routerLink="/previous-orders">Previous Orders</a>
+
+    <ng-container *ngIf="!(isLoggedIn$ | async)">
+        <a mat-button routerLink="/login">Login</a>
+        <a mat-button routerLink="/register">Register</a>
+    </ng-container>
+
+    <a mat-button (click)="onLogout()" *ngIf="isLoggedIn$ | async">Logout</a>
+</mat-toolbar>
